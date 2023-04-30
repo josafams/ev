@@ -47,6 +47,21 @@ services:
       - db
       - sidekiq
 
+  nginx:
+    image: nginx:stable-alpine
+    volumes:
+      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./docker/nginx/atena.conf:/etc/nginx/conf.d/default.conf
+      - .:/app
+    ports:
+      - 80:80
+      - 443:443
+    depends_on:
+      - atena
+    env_file:
+      - docker/atena.env
+      - docker/nginx.env
+
 volumes:
   redis:
   postgres:
