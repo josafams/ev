@@ -10,5 +10,7 @@ Rails.application.routes.draw do
 
   mount Sidekiq::Web, at: '/sidekiq'
 
+  devise_for :users, :controllers => {registrations: 'users/registrations', sessions: 'users/sessions'} 
   get 'healthz', to: 'v1/home#healthz'
+  root 'v1/home#dashboard'
 end

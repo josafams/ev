@@ -1,0 +1,37 @@
+<!-- alert notification -->
+<% if notice %>
+  <script type="text/javascript">
+    $('body')
+      .toast({
+        title: 'Mensagem',
+        message: '<%=  notice  %>',
+        showProgress: 'bottom'
+      });
+  </script>
+<% end %>
+
+<!-- alert warning -->
+<% if alert %>
+  <script type="text/javascript">
+    $('body')
+      .toast({
+        class: 'error',
+        title: 'Mensagem',
+        message: '<%=  alert  %>',
+        showProgress: 'bottom'
+      });
+  </script>
+<% end %>
+
+<!-- alert success -->
+<% if flash[:success] %>
+  <script type="text/javascript">
+    $('body')
+      .toast({
+        class: 'success',
+        title: 'Mensagem',
+        message: '<%=  flash[:success]  %>',
+        showProgress: 'bottom'
+      });
+  </script>
+<% end %>

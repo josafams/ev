@@ -39,7 +39,7 @@ group :development do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'annotate'
   gem 'rubocop'
-  gem 'rubocop-rails', require: false
+  gem 'rubocop-rails'
   gem "rack-mini-profiler"
 end
 

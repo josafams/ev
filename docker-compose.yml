@@ -32,7 +32,7 @@ services:
       - docker/db.env 
       - docker/sidekiq.env
       - docker/atena.env
-  
+
   sidekiq:
     <<: *ruby-base 
     command: bundle exec sidekiq
@@ -65,4 +65,4 @@ volumes:
   postgres:
   atena_gems:
   atena_cache_rails:
-  
+
