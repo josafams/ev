@@ -25,13 +25,11 @@ gem 'jquery-rails'
 gem 'cocoon'
 gem 'audited'
 
-
 group :development, :test do
   gem 'debug', platforms: %i[mri mingw x64_mingw]
 end
 
 group :development do
-  gem 'web-console'
   gem 'web-console'
   gem 'listen'
   gem 'spring'
@@ -40,8 +38,9 @@ group :development do
   gem 'binding_of_caller'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'annotate'
+  gem 'rubocop'
+  gem 'rubocop-rails', require: false
   gem "rack-mini-profiler"
-
 end
 
 group :test do
