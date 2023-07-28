@@ -14,5 +14,7 @@ module App
     config.load_defaults 7.0
 
     config.active_job.queue_adapter = :sidekiq
+    config.log_level = :debug
+
   end
 end

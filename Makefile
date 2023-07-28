@@ -3,6 +3,9 @@ THIS_FILE := $(lastword $(MAKEFILE_LIST))
 
 DOCKER_COMPOSE?=docker-compose
 
+run-atena:
+	docker-compose run --rm up atena  
+
 bash-atena:
 	docker-compose run --rm --no-deps --entrypoint '' atena sh
 
