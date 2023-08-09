@@ -48,4 +48,5 @@ group :test do
   gem 'selenium-webdriver'
   gem 'webdrivers'
   gem 'rspec'
+  gem 'rspec-rails'
 end
