@@ -16,5 +16,6 @@ module App
     config.active_job.queue_adapter = :sidekiq
     config.log_level = :debug
 
+    config.assets.paths << Rails.root.join("app", "assets", "fonts")
   end
 end

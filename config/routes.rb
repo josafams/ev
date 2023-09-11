@@ -12,5 +12,7 @@ Rails.application.routes.draw do
 
   devise_for :users, :controllers => {registrations: 'users/registrations', sessions: 'users/sessions'} 
   get 'healthz', to: 'v1/home#healthz'
-  root 'v1/home#dashboard'
+  root 'v1/home#index'
+
+  get '/dashboard', to: 'v1/home#dashboard'
 end

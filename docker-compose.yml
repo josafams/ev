@@ -21,8 +21,8 @@ services:
     stdin_open: true
     tty: true
     volumes:
-      - atena_gems:/usr/src/gems:delegated
-      - atena_cache_rails:/app/tmp/cache:delegated
+      - atena_gems:/usr/local/bundle/gems
+      - atena_cache_rails:/app/tmp/cache
       - .:/app
     depends_on:
       - db
@@ -36,6 +36,10 @@ services:
   sidekiq:
     <<: *ruby-base 
     command: bundle exec sidekiq
+    volumes:
+      - sidekiq_gems:/usr/local/bundle/gems
+      - sidekiq_cache_rails:/app/tmp/cache
+      - .:/app
 
   atena:
     <<: *ruby-base 
@@ -44,6 +48,10 @@ services:
       - 3000:3000
     depends_on:
       - sidekiq
+    volumes:
+      - atena_gems:/usr/local/bundle/gems
+      - atena_cache_rails:/app/tmp/cache
+      - .:/app
 
   nginx:
     image: nginx:stable-alpine
@@ -65,4 +73,5 @@ volumes:
   postgres:
   atena_gems:
   atena_cache_rails:
-
+  sidekiq_cache_rails:
+  sidekiq_gems:

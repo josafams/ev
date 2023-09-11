@@ -2,7 +2,7 @@
 
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
-  layout 'application_layout'
+  #layout 'application_layout'
 
    # Devise
   before_action :configure_permitted_parameters, if: :devise_controller?
