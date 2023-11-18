@@ -21,57 +21,57 @@ services:
     stdin_open: true
     tty: true
     volumes:
-      - atena_gems:/usr/local/bundle/gems
-      - atena_cache_rails:/app/tmp/cache
+      - ev_gems:/usr/local/bundle/gems
+      - ev_cache_rails:/app/tmp/cache
       - .:/app
     depends_on:
       - db
       - redis
     build: .
     env_file:
-      - docker/db.env 
+      - docker/db.env
       - docker/sidekiq.env
-      - docker/atena.env
+      - docker/ev.env
 
   sidekiq:
-    <<: *ruby-base 
+    <<: *ruby-base
     command: bundle exec sidekiq
     volumes:
       - sidekiq_gems:/usr/local/bundle/gems
       - sidekiq_cache_rails:/app/tmp/cache
       - .:/app
 
-  atena:
-    <<: *ruby-base 
+  ev:
+    <<: *ruby-base
     command: sh -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0' -e ${RAILS_ENV}"
     ports:
       - 3000:3000
     depends_on:
       - sidekiq
     volumes:
-      - atena_gems:/usr/local/bundle/gems
-      - atena_cache_rails:/app/tmp/cache
+      - ev_gems:/usr/local/bundle/gems
+      - ev_cache_rails:/app/tmp/cache
       - .:/app
 
   nginx:
     image: nginx:stable-alpine
     volumes:
       - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
-      - ./docker/nginx/atena.conf:/etc/nginx/conf.d/default.conf
+      - ./docker/nginx/ev.conf:/etc/nginx/conf.d/default.conf
       - .:/app
     ports:
       - 80:80
       - 443:443
     depends_on:
-      - atena
+      - ev
     env_file:
-      - docker/atena.env
+      - docker/ev.env
       - docker/nginx.env
 
 volumes:
   redis:
   postgres:
-  atena_gems:
-  atena_cache_rails:
+  ev_gems:
+  ev_cache_rails:
   sidekiq_cache_rails:
   sidekiq_gems:

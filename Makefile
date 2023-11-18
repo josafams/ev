@@ -3,11 +3,11 @@ THIS_FILE := $(lastword $(MAKEFILE_LIST))
 
 DOCKER_COMPOSE?=docker-compose
 
-run-atena:
-	docker-compose run --rm up atena  
+run-ev:
+	docker-compose run --rm up ev  
 
-bash-atena:
-	docker-compose run --rm --no-deps --entrypoint '' atena sh
+bash-ev:
+	docker-compose run --rm --no-deps --entrypoint '' ev sh
 
 bash-sidekiq:
 	docker-compose run --rm --no-deps --entrypoint '' sidekiq sh 
