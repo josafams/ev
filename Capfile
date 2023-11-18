@@ -37,7 +37,7 @@ install_plugin Capistrano::Docker
 # require "capistrano/rails/migrations"
 # require "capistrano/passenger"
 set :docker_compose_file, 'docker-compose.yml' # Caminho para o arquivo docker-compose.yml
-set :docker_roles, %w[ev]
+set :docker_roles, %w[ev nginx db sidekiq redis]
 
 # Load custom tasks from `lib/capistrano/tasks` if you have any defined
 Dir.glob("lib/capistrano/tasks/*.rake").each { |r| import r }
